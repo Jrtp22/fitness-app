@@ -1,80 +1,39 @@
-import { useContext, useState } from "react"
-import { useHistory } from "react-router"
-import { CurrentUser } from "../contexts/CurrentUser"
+import React from 'react';
+import {
+  MDBBtn,
+  MDBContainer,
+  MDBRow,
+  MDBCol,
+  MDBCard,
+  MDBCardBody,
+  MDBInput
+} from 'mdb-react-ui-kit';
 
-function LoginForm() {
-
-    const history = useHistory()
-
-    const { setCurrentUser } = useContext(CurrentUser)
-
-    const [credentials, setCredentials] = useState({
-        email: '',
-        password: ''
-    })
-
-    const [errorMessage, setErrorMessage] = useState(null)
-
-    async function handleSubmit(e) {
-        e.preventDefault()
-        const response = await fetch('http:://loccalhost:5000/authentication/', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(credentials)
-        })
-        const data = await response.json()
-        if (response.status === 200) {
-            setCurrentUser(data.user)
-            history.push('/')
-        } else {
-            setErrorMessage(data.message)
-        }
-    }
-
-    return (
-        <main>
-            <h1>Login</h1>
-            {errorMessage !== null
-                ? (
-                    <div className="alert alert-danger" role="alert">
-                        {errorMessage}
-                    </div>
-                )
-                : null
-            }
-            <form onSubmit={handleSubmit}>
-                <div className="row">
-                    <div className="col-sm-6 form-group">
-                        <label htmlFor="email">Email</label>
-                        <input
-                            type="email"
-                            required
-                            value={credentials.email}
-                            onChange={e => setCredentials({ ...credentials, email: e.target.value })}
-                            className="form-control"
-                            id="email"
-                            name="email"
-                        />
-                    </div>
-                    <div className="col-sm-6 form-group">
-                        <label htmlFor="password">Password</label>
-                        <input
-                            type="password"
-                            required
-                            value={credentials.password}
-                            onChange={e => setCredentials({ ...credentials, password: e.target.value })}
-                            className="form-control"
-                            id="password"
-                            name="password"
-                        />
-                    </div>
-                </div>
-                <input className="btn btn-primary" type="submit" value="Login" />
-            </form>
-        </main>
-    )
+function Login() {
+  return (
+    <MDBContainer fluid>
+      <MDBRow className='d-flex justify-content-center align-items-center h-100'>
+        <MDBCol col='12'>
+          <MDBCard className='bg-dark text-white my-5 mx-auto' style={{ borderRadius: '1rem', maxWidth: '400px' }}>
+            <MDBCardBody className='p-5 d-flex flex-column align-items-center mx-auto w-100'>
+              <h2 className="fw-bold mb-2 text-uppercase">Login</h2>
+              <p className="text-white-50 mb-5">Please enter your login and password!</p>
+              <MDBInput wrapperClass='mb-4 mx-5 w-100' labelClass='text-white' label='Email address' id='formControlLg' type='email' size="lg" />
+              <MDBInput wrapperClass='mb-4 mx-5 w-100' labelClass='text-white' label='Password' id='formControlLg' type='password' size="lg" />
+              <p className="small mb-3 pb-lg-2"><a className="text-white-50" href="#!">Forgot password?</a></p>
+              <MDBBtn outline color='white' className='mx-2 px-5' size='lg'>
+                Login
+              </MDBBtn>
+              <div>
+                <p className="mb-0">Don't have an account? <a href="#!" className="text-white-50 fw-bold">Sign Up</a></p>
+              </div>
+            </MDBCardBody>
+          </MDBCard>
+        </MDBCol>
+      </MDBRow>
+    </MDBContainer>
+  );
 }
 
-export default LoginForm
+export default Login;
+
