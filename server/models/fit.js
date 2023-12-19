@@ -8,15 +8,17 @@ module.exports = (sequelize, DataTypes) => {
             primaryKey: true,
             autoIncrement: true,
         },
-        weekday: DataTypes.STRING,
-        muscle: DataTypes.STRING,
-        reps: DataTypes.INTEGER,
-        time: DataTypes.INTEGER,
-        checkBox: DataTypes.BOOLEAN,
+        name: DataTypes.STRING,
+        age: DataTypes.INTEGER,
+        weight: DataTypes.INTEGER,
+        height: DataTypes.INTEGER,
+        fitness_goal: DataTypes.STRING,
+        activity_level: DataTypes.STRING,
     }, {
         underscored: true,
         modelName: "Fit",
     });
+    return Fit;
 };
 
-return Fit;
+
