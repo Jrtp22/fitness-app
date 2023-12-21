@@ -68,3 +68,43 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+
+
+# Fitness App
+
+## Technologies Used
+
+Listed below are the key technologies used in the development of this project:
+
+### Front-End
+
+- **HTML/CSS:** Standard markup and styling languages for web pages.
+- **JavaScript:** Programming language for adding interactivity to web pages.
+- **React:** JavaScript library for building user interfaces.
+
+### Back-End
+
+- **Node.js:** Server-side JavaScript runtime.
+- **Express.js:** Web application framework for Node.js.
+- **MongoDB:** NoSQL database for storing and retrieving data.
+
+### Database
+
+- **MongoDB:** NoSQL database management system.
+
+### Version Control
+
+- **Git:** Distributed version control system.
+
+### Package Manager
+
+- **npm (Node Package Manager):** Package manager for JavaScript.
+
+
+### Styling
+
+- **Bootstrap:** CSS framework for styling web applications.
+
+
