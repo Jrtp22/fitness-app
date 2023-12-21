@@ -1,45 +1,75 @@
-// SignUpForm.js
-
+import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import React, { useState } from 'react';
 
-const SignUpForm = ({ onSignUpSubmit, toggleForm }) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+const SignUpForm = () => {
+  const history = useHistory();
+  const [user, setUser] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: ''
+  });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle sign-up logic
-    onSignUpSubmit({ email, password });
+
+    await fetch(`${process.env.REACT_APP_SERVER_URL}/users/`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(user)
+    });
+
+    history.push(`/`);
   };
 
   return (
-    <div>
-      <h2>Sign Up</h2>
+    <main>
+      <h1>Sign Up</h1>
       <form onSubmit={handleSubmit}>
-        <label>
-          Email:
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </label>
-        <br />
-        <label>
-          Password:
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </label>
-        <br />
-        <button type="submit">Sign Up</button>
+        <div className="row">
+          <div className="col-sm-6 form-group">
+            <label htmlFor="firstName">First Name</label>
+            <input
+              required
+              value={user.firstName}
+              onChange={(e) => setUser({ ...user, firstName: e.target.value })}
+              className="form-control"
+              id="firstName"
+              name="firstName"
+            />
+          </div>
+          <div className="col-sm-6 form-group">
+            <label htmlFor="lastName">Last Name</label>
+            <input
+              required
+              value={user.lastName}
+              onChange={(e) => setUser({ ...user, lastName: e.target.value })}
+              className="form-control"
+              id="lastName"
+              name="lastName"
+            />
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-sm-6 form-group">
+            <label htmlFor="email">Email</label>
+            <input
+              type="email"
+              required
+              value={user.email}
+              onChange={(e) => setUser({ ...user, email: e.target.value })}
+              className="form-control"
+              id="email"
+              name="email"
+            />
+          </div>
+        </div>
+        <input className="btn btn-primary" type="submit" value="Sign Up" />
       </form>
-      <p onClick={toggleForm}>Already have an account? Login</p>
-    </div>
+    </main>
   );
 };
 
