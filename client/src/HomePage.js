@@ -1,7 +1,7 @@
 // HomePage.js
 import React from 'react';
 import { Link } from 'react-router-dom';
-import '../app.css';
+import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function HomePage() {
@@ -14,10 +14,10 @@ function HomePage() {
         </div>
 
         <div className='join'>
-          <h2>Welcome to our Fitness App – your go-to companion for a healthier lifestyle!</h2>
+          <h2>Welcome to our Fitness App  your go-to companion for a healthier lifestyle!</h2>
           <p>Unleash your full potential with a diverse range of workouts designed to elevate your fitness journey.</p>
 
-          <Link to="/logIn">
+          <Link to="./LoginForm">
             <button className="btn-primary">Log-In</button>
           </Link>
         </div>

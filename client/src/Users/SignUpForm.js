@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import React, { useState } from 'react';
+
 
 const SignUpForm = () => {
   const history = useHistory();

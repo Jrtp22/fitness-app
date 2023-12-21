@@ -8,7 +8,6 @@ const LoginForm = ({ onLoginSubmit, toggleForm }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle login logic
     onLoginSubmit({ email, password });
   };
 

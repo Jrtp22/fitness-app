@@ -1,8 +1,8 @@
 // Profile.js
 import React from 'react';
-import UserProfileCard from './UserProfileCard';
-import '../app.css';
-import 'components/navbar.js'
+import UserProfileCard from './ProfileCard';
+import '../App';
+import './Navbar'
 
 class ProfilePage extends React.Component {
   render() {
