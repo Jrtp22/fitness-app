@@ -2,6 +2,7 @@
 import React from 'react';
 import UserProfileCard from './UserProfileCard';
 import '../app.css';
+import 'components/navbar.js'
 
 class ProfilePage extends React.Component {
   render() {
