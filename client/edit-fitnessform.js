@@ -26,7 +26,6 @@ function EditFitnessForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Assuming you have an endpoint for updating fitness information
     await fetch(`${process.env.REACT_APP_SERVER_URL}/update_fitness/${fitnessId}`, {
       method: "PUT",
       headers: {
@@ -35,7 +34,6 @@ function EditFitnessForm() {
       body: JSON.stringify(fitnessInfo),
     });
 
-    // Redirect to the desired page after successful submission
     history.push(`/fitness/${fitnessId}`);
   };
 

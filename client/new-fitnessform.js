@@ -17,7 +17,6 @@ function NewFitnessForm() {
     e.preventDefault();
 
 
-    // Assuming you have an endpoint for updating fitness information
     await fetch(`${process.env.REACT_APP_SERVER_URL}/fitness`, {
       method: "POST",
       headers: {
