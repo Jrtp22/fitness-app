@@ -13,6 +13,7 @@ app.use(bodyParser.json());
 
 //routes
 app.use('/fitness', require('./controllers/fitness'));
+app.use('/users', require('./controllers/users'))
 
 //server
 app.listen(process.env.PORT, () => {
