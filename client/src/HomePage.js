@@ -2,6 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../app.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function HomePage() {
   return (
