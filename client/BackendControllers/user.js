@@ -1,32 +1,35 @@
 const express = require('express');
 const router = express.Router();
-const mongoose = require('mongoose');
+const { Pool } = require('pg');
 
-mongoose.connect('mongodb://localhost:27017/your_database_name', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
+const pool = new Pool({
+  "username": process.env.DB_USERNAME,
+  "password": process.env.DB_PASSWORD,
+  "database": process.env.DB_DATABASE,
+  "host": "127.0.0.1",
+  "dialect": "postgres"
 });
-
-const User = require('../BackendModels/user.js'); 
 
 router.post('/', async (req, res) => {
   try {
-    const user = await User.create(req.body);
+    const { rows } = await pool.query('INSERT INTO users (column1, column2, ...) VALUES ($1, $2, ...) RETURNING *', [req.body.column1, req.body.column2, ...]);
+    const user = rows[0];
     res.json(user);
-  } catch (error) {
+} catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Internal Server Error' });
-  }
+}
 });
 
 router.get('/', async (req, res) => {
   try {
-    const users = await User.find();
-    res.json(users);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
+    const { rows } = await pool.query('SELECT * FROM users');
+        const users = rows;
+        res.json(users);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
 });
 
 module.exports = router;
