@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Home from './HomePage';
 import Profile from './components/Profile';
 import ProfileCard from './components/ProfileCard';
-import Navbar from './components/Navbar';
+import Navi from './components/Navbar';
 import NewFitnessForm from './components/NewFitnessForm';
 import EditFitnessForm from './components/EditFitnessForm';
 import SignUpForm from './Users/SignUpForm';
@@ -15,7 +15,7 @@ function App() {
     return (
         <CurrentUserProvider>
             <BrowserRouter>
-                <Navbar />
+                <Navi />
                 <Switch>
                     <Route exact path="/" component={Home} />
                     <Route exact path="/sign-up" component={SignUpForm} />

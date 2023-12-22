@@ -1,31 +1,43 @@
-// Profile.js
-import React from 'react';
-import UserProfileCard from './ProfileCard';
-import '../App';
-import './Navbar'
+import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router";
 
-class ProfilePage extends React.Component {
-  render() {
-    const userData = {
-      name: 'Alexender Smith',
-      age: '24',
-      height: '6 Foot ',
-      socialLinks: [
-        { icon: 'facebook', url: 'https://www.facebook.com/' },
-        { icon: 'dribbble', url: 'https://dribbble.com/' },
-        { icon: 'instagram', url: 'https://www.instagram.com/' },
-        { icon: 'linkedin', url: 'https://www.linkedin.com/' },
-        { icon: 'google', url: 'https://www.google.com/' },
-      ],
+function FitnessProfile() {
+  const history = useHistory();
+  const [fitnessInfo, setFitnessInfo] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/fitness`);
+      const resData = await response.json();
+      setFitnessInfo(resData);
     };
+    fetchData();
+  }, []);
 
-    return (
-      <div>
-        <h1>User Profile</h1>
-        <UserProfileCard {...userData} />
-      </div>
-    );
+  if (!fitnessInfo) {
+    return <h1>Loading</h1>;
   }
+
+  const fitnessFormatted = fitnessInfo.map((fitness) => (
+    <div className="col-sm-6" key={fitness.fitnessId}>
+      <h2>{fitness.name}</h2>
+      <p className="text-center">Age: {fitness.age}</p>
+      <p className="text-center">Weight: {fitness.weight} kg</p>
+      <p className="text-center">Height: {fitness.height} cm</p>
+      <p className="text-center">Fitness Goal: {fitness.fitness_goal}</p>
+      <p className="text-center">Activity Level: {fitness.activity_level}</p>
+      <button onClick={() => history.push(`/fitness/edit/${fitness.fitnessId}`)}>
+        Edit
+      </button>
+    </div>
+  ));
+
+  return (
+    <main>
+      <h1>Fitness Profile</h1>
+      <div className="row">{fitnessFormatted}</div>
+    </main>
+  );
 }
 
-export default ProfilePage;
+export default FitnessProfile;

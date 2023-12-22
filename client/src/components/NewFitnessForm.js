@@ -30,7 +30,7 @@ function NewFitnessForm() {
 
   return (
     <main>
-      <h1>Edit Fitness Information</h1>
+      <h1>New Fitness Information</h1>
       <form onSubmit={handleSubmit}>
         <label htmlFor="name">Name:</label>
         <input
@@ -94,7 +94,7 @@ function NewFitnessForm() {
           <option value="super_active">Super Active (very hard exercise & physical job)</option>
         </select>
 
-        <input type="submit" value="Update" />
+        <input type="submit" value="Submit" />
       </form>
     </main>
   );

@@ -17,9 +17,7 @@ function HomePage() {
           <h2>Welcome to our Fitness App  your go-to companion for a healthier lifestyle!</h2>
           <p>Unleash your full potential with a diverse range of workouts designed to elevate your fitness journey.</p>
 
-          <Link to="./LoginForm">
-            <button className="btn-primary">Log-In</button>
-          </Link>
+
         </div>
 
         <div className='footer'>

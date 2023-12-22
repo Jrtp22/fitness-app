@@ -4,17 +4,17 @@ const db = require('../models');
 const {Fitness} = db;
 
 router.post('/', async (req, res) => {
-    const data = await fitness.create(req.body);
+    const data = await Fitness.create(req.body);
     res.json(data);
 })
 
 router.get('/', async (req, res) => {
-    const data = await fitness.findAll();
+    const data = await Fitness.findAll();
     res.json(data);
 })
 
 router.get('/:fitnessId', async (req, res) => {
-    const data = await fitness.findByPk(req.params.id);
+    const data = await Fitness.findByPk(req.params.id);
     res.json(data);
 })
 
