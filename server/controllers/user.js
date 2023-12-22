@@ -12,7 +12,7 @@ const pool = new Pool({
 
 router.post('/', async (req, res) => {
   try {
-    const { rows } = await pool.query('INSERT INTO users (column1, column2, ...) VALUES ($1, $2, ...) RETURNING *', [req.body.column1, req.body.column2, ...]);
+const { rows } = await pool.query('INSERT INTO users (column1, column2, ...) VALUES ($1, $2, ...) RETURNING *', [req.body.column1, req.body.column2, ... req.body.column3]);
     const user = rows[0];
     res.json(user);
   } catch (error) {
