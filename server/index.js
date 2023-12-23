@@ -10,10 +10,28 @@ app.use(cors());
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+const cookieSession = require('cookie-session')
+const defineCurrentUser = require('./middleware/defineCurrentUser')
+app.use(defineCurrentUser)
+app.use(cookieSession({
+    name: 'session',
+    keys: [ process.env.SESSION_SECRET ],
+    sameSite: 'strict',
+    maxAge: 24 * 60 * 60 * 1000 // 24 hours
+}))
+app.use(cors({
+    origin: 'http://localhost:3000',
+    credentials: true
+}))
+
+
+
+app.use(express.urlencoded({ extended: true }))
 
 //routes
 app.use('/fitness', require('./controllers/fitness'));
-//app.use('/users', require('./controllers/users'))
+app.use('/users', require('./controllers/user'))
+app.use('/authentication', require('./controllers/authentication'))
 
 //server
 app.listen(process.env.PORT, () => {

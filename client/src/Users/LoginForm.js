@@ -1,14 +1,39 @@
 // LoginForm.js
-
-import React, { useState } from 'react';
+import { useHistory } from "react-router";
+import React, { useState, useContext } from 'react';
+import { CurrentUser } from "../contexts/CurrentUser"
 
 const LoginForm = ({ onLoginSubmit, toggleForm }) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const history = useHistory()
 
-  const handleSubmit = (e) => {
+  const { setCurrentUser } = useContext(CurrentUser)
+
+  const [credentials, setCredentials] = useState({
+    email: '',
+    password: ''
+  });
+  
+  const [errorMessage, setErrorMessage] = useState(null)
+  
+  async function handleSubmit (e) {
     e.preventDefault();
-    onLoginSubmit({ email, password });
+        const response = await fetch(`http://localhost:5000/authentication/`, {
+            method: 'POST',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(credentials)
+          });
+
+          const data = await response.json()
+
+          if (response.status === 200) {
+              setCurrentUser(data.user)
+              history.push(`/`)
+          } else {
+              setErrorMessage(data.message)
+          }
   };
 
   return (
@@ -19,8 +44,8 @@ const LoginForm = ({ onLoginSubmit, toggleForm }) => {
           Email:
           <input
             type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={credentials.email}
+            onChange={(e) => setCredentials({ ...credentials, email: e.target.value })}
             required
           />
         </label>
@@ -29,15 +54,14 @@ const LoginForm = ({ onLoginSubmit, toggleForm }) => {
           Password:
           <input
             type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            value={credentials.password}
+            onChange={(e) => setCredentials({ ...credentials, password: e.target.value })}
             required
           />
         </label>
         <br />
         <button type="submit">Login</button>
       </form>
-      <p onClick={toggleForm}>Don't have an account? Sign Up</p>
     </div>
   );
 };
