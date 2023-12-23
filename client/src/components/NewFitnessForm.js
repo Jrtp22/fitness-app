@@ -17,7 +17,7 @@ function NewFitnessForm() {
     e.preventDefault();
 
 
-    await fetch(`${process.env.REACT_APP_SERVER_URL}/fitness`, {
+    await fetch(`http://localhost:5000/fitness`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
