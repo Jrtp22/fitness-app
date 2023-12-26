@@ -13,7 +13,7 @@ const LoginForm = ({ onLoginSubmit, toggleForm }) => {
     password: ''
   });
   
-  const [errorMessage, setErrorMessage] = useState(null)
+  const [ setErrorMessage] = useState(null)
   
   async function handleSubmit (e) {
     e.preventDefault();

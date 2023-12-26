@@ -12,6 +12,9 @@ module.exports = {
       name: {
         type: Sequelize.STRING,
       },
+      age: {
+        type: Sequelize.INTEGER
+      },
       weight: {
         type: Sequelize.INTEGER,
       },
@@ -23,9 +26,20 @@ module.exports = {
       },
       activity_level: {
         type: Sequelize.STRING,
-      }
+      },
+      created_at: {
+        allowNull: false,
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+      },
+      updated_at: {
+        allowNull: false,
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+      },
     });
   },
+
   down: async (queryInterface, Sequelize) => {
     await queryInterface.dropTable('fitness');
   }
