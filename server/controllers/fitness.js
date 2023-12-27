@@ -14,9 +14,10 @@ router.get('/', async (req, res) => {
 })
 
 router.get('/:fitnessId', async (req, res) => {
-    const data = await Fitness.findByPk(req.params.id);
+    const data = await Fitness.findByPk(req.params.fitnessId);
     res.json(data);
-})
+});
+
 
 router.put('/:fitnessId', async (req, res) => {
     let fitnessId = Number(req.params.fitnessId)

@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 
 function NewFitnessForm() {
-  const history = useHistory();
-
   const [fitnessInfo, setFitnessInfo] = useState({
     name: "",
     age: "",
@@ -13,20 +11,31 @@ function NewFitnessForm() {
     activity_level: "sedentary"
   });
 
+  const history = useHistory(); 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    try {
+      const response = await fetch('http://localhost:5000/fitness', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(fitnessInfo),
+        credentials: 'include', 
+      });
 
-    await fetch(`http://localhost:5000/fitness`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(fitnessInfo),
-    });
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
 
-    history.push("/fitness"); 
+      history.push("/fitness");
+    } catch (error) {
+      console.error('Error submitting fitness info:', error);
+    }
   };
+
 
   return (
     <main>

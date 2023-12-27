@@ -14,6 +14,24 @@ function FitnessProfile() {
     fetchData();
   }, []);
 
+  const handleEdit = (fitnessId) => {
+    history.push(`/edit-fitness/${fitnessId}`);
+  };
+  
+
+  const handleDelete = async (fitnessId) => {
+    const confirmDelete = window.confirm("Are you sure you want to delete this fitness profile?");
+    
+    if (confirmDelete) {
+      await fetch(`${process.env.REACT_APP_SERVER_URL}/fitness/${fitnessId}`, {
+        method: "DELETE",
+      });
+      const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/fitness`);
+      const resData = await response.json();
+      setFitnessInfo(resData);
+    }
+  };
+
   if (!fitnessInfo) {
     return <h1>Loading</h1>;
   }
@@ -26,9 +44,8 @@ function FitnessProfile() {
       <p className="text-center">Height: {fitness.height} cm</p>
       <p className="text-center">Fitness Goal: {fitness.fitness_goal}</p>
       <p className="text-center">Activity Level: {fitness.activity_level}</p>
-      <button onClick={() => history.push(`/fitness/edit/${fitness.fitnessId}`)}>
-        Edit
-      </button>
+      <button onClick={() => handleEdit(fitness.fitnessId)}>Edit</button>
+      <button onClick={() => handleDelete(fitness.fitnessId)}>Delete</button>
     </div>
   ));
 

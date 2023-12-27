@@ -24,7 +24,7 @@ function App() {
                     <Route exact path="/profile" component={Profile} />
                     <Route exact path="/profile-card" component={ProfileCard} />
                     <Route exact path="/new-fitness" component={NewFitnessForm} />
-                    <Route exact path="/edit-fitness" component={EditFitnessForm} />
+                    <Route path="/edit-fitness/:fitnessId" component={EditFitnessForm} />
                     <Route exact path="/auth-form" component={AuthForm} />
                 </Switch>
             </BrowserRouter>
