@@ -32,7 +32,10 @@ function Navi({ children }) {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
               {currentUser && (
-                <Nav.Link href="/new-fitness">Add Fitness</Nav.Link>
+                <Nav.Link href="/new-fitness" onClick={(e) => { e.preventDefault(); history.push("/new-fitness"); }}>
+                Add Fitness
+              </Nav.Link>
+              
               )}
             </Nav>
             <Nav className="ms-auto">
