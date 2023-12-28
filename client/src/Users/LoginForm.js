@@ -33,12 +33,11 @@ const LoginForm = ({ onLoginSubmit, toggleForm }) => {
   }
 
   return (
-    <div className="container mt-5">
-      <div className="row justify-content-center">
-        <div className="col-md-6">
-          <h2>Login</h2>
+    <main>
+      <div className="form-container">
           <form onSubmit={handleSubmit}>
-            <div className="mb-3">
+          <h1>Login</h1>
+            <div className="form-group">
               <label htmlFor="email" className="form-label">
                 Email:
               </label>
@@ -51,7 +50,7 @@ const LoginForm = ({ onLoginSubmit, toggleForm }) => {
                 required
               />
             </div>
-            <div className="mb-3">
+            <div className="form-group">
               <label htmlFor="password" className="form-label">
                 Password:
               </label>
@@ -70,8 +69,7 @@ const LoginForm = ({ onLoginSubmit, toggleForm }) => {
           </form>
           {errorMessage && <p className="text-danger mt-3">{errorMessage}</p>}
         </div>
-      </div>
-    </div>
+    </main>
   );
 };
 

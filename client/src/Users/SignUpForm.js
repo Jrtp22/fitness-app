@@ -26,11 +26,12 @@ const SignUpForm = () => {
   };
 
   return (
-    <main>
-      <h1>Sign Up</h1>
+    <main className='form-container'>
+      
       <form onSubmit={handleSubmit}>
+      <h1>Sign Up</h1>
         <div className="row">
-          <div className="col-sm-6 form-group">
+          <div className="form-group">
             <label htmlFor="firstName">First Name</label>
             <input
               required
@@ -41,7 +42,7 @@ const SignUpForm = () => {
               name="firstName"
             />
           </div>
-          <div className="col-sm-6 form-group">
+          <div className="form-group">
             <label htmlFor="lastName">Last Name</label>
             <input
               required
@@ -54,7 +55,7 @@ const SignUpForm = () => {
           </div>
         </div>
         <div className="row">
-          <div className="col-sm-6 form-group">
+          <div className="form-group">
             <label htmlFor="email">Email</label>
             <input
               type="email"
@@ -66,7 +67,7 @@ const SignUpForm = () => {
               name="email"
             />
           </div>
-          <div className="col-sm-6 form-group">
+          <div className="form-group">
             <label htmlFor="password">Password</label>
             <input
               type="password"

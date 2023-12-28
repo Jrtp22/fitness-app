@@ -37,15 +37,20 @@ function FitnessProfile() {
   }
 
   const fitnessFormatted = fitnessInfo.map((fitness) => (
-    <div className="col-sm-6" key={fitness.fitnessId}>
-      <h2>{fitness.name}</h2>
-      <p className="text-center">Age: {fitness.age}</p>
-      <p className="text-center">Weight: {fitness.weight} kg</p>
-      <p className="text-center">Height: {fitness.height} cm</p>
-      <p className="text-center">Fitness Goal: {fitness.fitness_goal}</p>
-      <p className="text-center">Activity Level: {fitness.activity_level}</p>
-      <button onClick={() => handleEdit(fitness.fitnessId)}>Edit</button>
-      <button onClick={() => handleDelete(fitness.fitnessId)}>Delete</button>
+    <div className="fitness-item" key={fitness.fitnessId}>
+      
+      <div className="fitness-details">
+      <h1>{fitness.name}</h1>
+        <p className="text-center">Age: {fitness.age}</p>
+        <p className="text-center">Weight: {fitness.weight} kg</p>
+        <p className="text-center">Height: {fitness.height} cm</p>
+        <p className="text-center">Fitness Goal: {fitness.fitness_goal}</p>
+        <p className="text-center">Activity Level: {fitness.activity_level}</p>
+        <div className="button-group">
+          <button className="edit-btn" onClick={() => handleEdit(fitness.fitnessId)}>Edit</button>
+          <button className="delete-btn" onClick={() => handleDelete(fitness.fitnessId)}>Delete</button>
+        </div>
+      </div>
     </div>
   ));
 

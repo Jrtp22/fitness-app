@@ -38,7 +38,7 @@ function NewFitnessForm() {
 
 
   return (
-    <main>
+    <main className="form-container">
       <h1>New Fitness Information</h1>
       <form onSubmit={handleSubmit}>
         <label htmlFor="name">Name:</label>

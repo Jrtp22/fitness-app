@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
+import './Form.css';
 
 function EditFitnessForm() {
   const history = useHistory();
@@ -48,9 +49,10 @@ function EditFitnessForm() {
   };
 
   return (
-    <main>
-      <h1>Edit Fitness Information</h1>
+    <main class='form-container'>
+      
       <form onSubmit={handleSubmit}>
+      <h1>Edit Fitness Information</h1>
         <label htmlFor="name">Name:</label>
         <input
           type="text"
